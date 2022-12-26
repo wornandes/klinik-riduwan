@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('medical_records', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->text('anamnesis');
+            $table->text('diagnosis');
+            $table->text('therapy');
             $table->timestamps();
         });
     }
