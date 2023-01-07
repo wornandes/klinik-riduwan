@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/login',[LoginController::class, 'index'])->name('login');
+    Route::post('/login',[LoginController::class, 'authenticate']);
 });
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/logout',[LoginController::class, 'logout']);
+    Route::get('/', function () {
+        return view('welcome', [
+            "title" => "Home",
+            'active' => 'home'
+        ]);
+    });
+
+    Route::group(['middleware'=>'role:perawat,admin'],function(){
+        
+        Route::get('/admin',function(){
+            return "admin";
+        });
+        
+    });
+});
+
