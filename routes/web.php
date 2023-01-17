@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,12 +31,24 @@ Route::group(['middleware' => 'auth'], function () {
         ]);
     });
 
-    Route::group(['middleware'=>'role:perawat,admin'],function(){
+    Route::group(['middleware'=>'role:admin'],function(){
         
-        Route::get('/admin',function(){
-            return "admin";
-        });
+        Route::get('/user',[UserController::class, 'index']);
+        Route::get('/user/add',[UserController::class, 'addUser']);
+        Route::post('/user/store',[UserController::class, 'storeUser']);
+        Route::post('/user/delete',[UserController::class, 'destroyUser']);
+        Route::get('/user/{id}/edit',[UserController::class, 'editUser']);
+        Route::post('/user/{id}/update',[UserController::class, 'updateUser']);
         
+    });
+
+    Route::group(['middleware'=>'role:perawat'],function(){
+        
+        Route::get('/patient',[PatientController::class, 'index']);
+        Route::get('/patient/add',[PatientController::class, 'addPatient']);
+        Route::post('/patient/store',[PatientController::class, 'storePatient']);
+        Route::get('/patient/{id}/edit',[PatientController::class, 'editPatient']);
+        Route::get('/patient/{id}/detail',[PatientController::class, 'showDetailPatient']);
     });
 });
 
