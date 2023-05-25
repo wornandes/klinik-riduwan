@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Klinik Riduwan - Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -47,10 +47,16 @@
                                             <input type="text" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Username..." name="username">
+                                                @error('username')
+                                                <span class="validation-error"> {{ $message }} </span>
+                                                @enderror
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password" name="password">
+                                                @error('password')
+                                                <span class="validation-error"> {{ $message }} </span>
+                                                @enderror
                                         </div>
                                         
                                         <button class="btn btn-primary btn-user btn-block" type="submit">

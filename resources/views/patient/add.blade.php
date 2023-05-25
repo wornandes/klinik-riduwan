@@ -86,7 +86,7 @@
                                     <div class="col offset-md-4 offset-lg-2">
                                         <div>
                                             <button class="btn btn-primary me-1 mb-1" type="submit">Tambah</button>
-                                            <a class="btn btn-light-secondary me-1 mb-1" href="/patient">Batal</a>
+                                            <a class="btn btn-danger me-1 mb-1" href="/patient">Batal</a>
                                         </div>
                                     </div>
                                 </div>

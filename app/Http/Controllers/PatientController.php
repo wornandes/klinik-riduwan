@@ -8,11 +8,28 @@ use App\Models\Patient;
 class PatientController extends Controller
 {
     public function index(){
-        $patients = Patient::all();
+        
+        $patients = Patient::paginate(10);
         return view('patient.index', [
             'patients' => $patients
         ]);
     }
+
+    public function search(Request $request)
+	{
+		// menangkap data pencarian
+		$search = $request->search;
+ 
+    		// mengambil data dari table pegawai sesuai pencarian data
+		$patient = Patient::where('name','like',"%".$search."%")
+		->paginate();
+ 
+    		// mengirim data pegawai ke view index
+            return view('patient.index', [
+                'patients' => $patient
+            ]);
+ 
+	}
 
     public function showDetailPatient($patient_id){
         return view('patient.show',[

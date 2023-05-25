@@ -1,7 +1,7 @@
 @extends('layouts.index')
 @section('content')
 <div class="page-heading">
-    <h3>Daftar Pasien</h3>
+    <h3>Daftar Pasien Menu Dokter</h3>
 </div>
 <div class="page-content">
     <section class="row">
@@ -9,19 +9,8 @@
             <div class="card">
                 <div class="card-content">
                     <div class="card-body">
-                        <div class="mb-3">
-                            <a class="btn btn-primary" href="{{ url('/patient/add') }}">Tambah Pasien
-                                </a>
-                        </div>
-                         @if(session()->has('success'))
-                        <div class="alert alert-success  col-lg-8" role="alert">
-                        {{ session('success') }}
-                        </div>  
-                        @endif
 
-                        
-
-                        <form action="/patient/search" method="GET">
+                        <form action="/medical_record/search" method="GET">
                         <div class="input-group mb-3">
                         <input type="text" class="form-control" name="search" placeholder="Search .." value="{{ old('search') }}">
                         <button class="btn btn-danger" type="submit">Search</button>
@@ -46,29 +35,16 @@
                                             <td>{{ $patient->birthdate }}</td>
                                             <td>{{ $patient->sex }}</td>
                                             <td>{{ $patient->phone }}</td>
-                                            <td style="white-space: nowrap"><a class="btn btn-info"
-                                                    href="{{ '/patient/' . $patient->id . '/detail' }}">
-                                                    Detail
+                                            <td style="white-space: nowrap"><a class="btn btn-primary"
+                                                    href="{{ '/medical_record/' . $patient->id . '/add' }}">
+                                                    Tambah Rekam Medis
                                                 </a>
-                                                <a class="btn btn-secondary"
-                                                    href="{{ '/patient/' . $patient->id . '/edit' }}">
-                                                    Edit
-                                                </a>
-                                                <a class="btn btn-primary"
-                                                    href="{{ '/registration/' . $patient->id . '/add' }}">
-                                                    Tambah Antrian
-                                                </a>
-                                                <form action="/patient/{{$patient->id}}" method="get" class="d-inline">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus pasien ini?')">Delete</button>
-                                                </form>
+                                                
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            
                         </div>
                     </div>
                 </div>

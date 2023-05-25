@@ -1,7 +1,7 @@
 @extends('layouts.index')
 @section('content')
 <div class="page-heading">
-    <h3>Administrator</h3>
+    <h4>Daftar User</h4>
 </div>
 <div class="page-content">
     <section class="row">
@@ -39,10 +39,10 @@
                                                     Edit
                                                 </a>
                                                 @if ($user->id != auth()->id())
-                                                <form action="/user/delete" method="post" class="d-inline">
-                                                    @method('delete')
+                                                <form action="/user/{{ $user->id }}" method="get" class="d-inline">
+                                                    @method('delete')   
                                                     @csrf
-                                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                                    <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus pengguna ini?')">Delete</button>
                                                 </form>
                                                 @endif
                                             </td>
@@ -51,10 +51,6 @@
                                 </tbody>
                             </table>
                             
-                            {{-- <form id="delete-form" action="{{ url('user/delete') }}" method="POST">
-                                @csrf
-                                <input name="id" type="hidden">
-                            </form> --}}
                         </div>
                     </div>
                 </div>
@@ -63,33 +59,3 @@
     </section>
 </div>
 @endsection
-{{-- @push('script')
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('#users-table').DataTable({
-                scrollX: true
-            });
-            $('.delete-user').click(function() {
-                let user_id = $(this).data('id');
-                Swal.fire({
-                        title: `Apakah anda yakin menghapus data petugas ini?`,
-                        text: "Jika anda menghapus, data tidak dapat dikembalikan",
-                        icon: "warning",
-                        buttons: true,
-                        showCancelButton: true,
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete.isConfirmed) {
-                            let form = $("#delete-form");
-                            $('input[name="id"]').val(user_id);
-                            form.submit();
-                        }
-                    });
-            })
-        });
-    </script>
-@endpush --}}

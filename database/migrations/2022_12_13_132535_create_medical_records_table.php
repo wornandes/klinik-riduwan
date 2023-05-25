@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Patient; 
 
 return new class extends Migration
 {
@@ -19,6 +20,7 @@ return new class extends Migration
             $table->text('anamnesis');
             $table->text('diagnosis');
             $table->text('therapy');
+            $table->foreignIdFor(Patient::class)->constrained();
             $table->timestamps();
         });
     }

@@ -4,8 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Patient;
 
 class MedicalRecord extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+
+    function patient(){
+        return $this->belongsTo(Patient::class, 'patient_id');
+    }
 }

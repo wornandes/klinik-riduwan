@@ -17,7 +17,11 @@ class MedicalRecordFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'date' => fake()->dateTime(),
+            'anamnesis' => fake()->sentence(),
+            'diagnosis' => fake()->sentence(),
+            'therapy' => fake()->sentence(), 
+            'patient_id' => fake()->randomDigit()
         ];
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.index')
 @section('content')
 <div class="page-heading">
-    <h3>Tambah Pasien</h3>
+    <h3>Ubah Data Pasien</h3>
 </div>
 <div class="page-content">
     <section class="row">
@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form form-horizontal" action="/patient/store" method="post">
+                        <form class="form form-horizontal" action="{{ '/patient/' . $patient->id . '/update' }}" method="post">
                             @csrf
                             <div class="form-body">
                                 <div class="row mb-3">
@@ -38,13 +38,8 @@
                                     <label class="col-md-4 col-lg-2 col-form-label">Jenis Kelamin</label>
                                     <div class="col-md-8 col-lg-10">
                                         <select class="form-control form-control-lg  @error('sex') is-invalid @enderror" name="sex">
-                                            <option value="">Pilih Jenis Kelamin</option>
-                                            <option value=""{{ $patient->sex === "Laki-laki" ? 'checked' : '' }}>
-                                            {{-- @foreach ($patient as $key => $role)
-                                                    <option value="{{ $role->id }}"
-                                                        {{ $user->role_id == $role->id ? 'selected' : '' }}>
-                                                        {{ $role->name }}</option>
-                                                @endforeach --}}
+                                        <option value="Laki-laki" {{ $patient->sex == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                        <option value="Perempuan" {{ $patient->sex == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                                         </select>
                                         @error('sex')
                                             <span class="validation-error"> {{ $message }} </span>
@@ -90,7 +85,7 @@
                                     <div class="col offset-md-4 offset-lg-2">
                                         <div>
                                             <button class="btn btn-primary me-1 mb-1" type="submit">Simpan</button>
-                                            <a class="btn btn-light-secondary me-1 mb-1" href="/patient">Batal</a>
+                                            <a class="btn btn-danger me-1 mb-1" href="/patient">Batal</a>
                                         </div>
                                     </div>
                                 </div>

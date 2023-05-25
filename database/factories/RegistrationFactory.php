@@ -17,7 +17,9 @@ class RegistrationFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'check_date' => fake()->dateTime(),
+            'registration_date' => fake()->dateTime(),
+            'patient_id' => fake()->randomDigit(),
         ];
     }
 }
