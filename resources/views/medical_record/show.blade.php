@@ -20,7 +20,7 @@
                                     <div class="row mb-2">
                                         <div class="col-12 col-md-4 col-lg-4 col-xl-3 text-muted font-semibold">Tanggal Lahir
                                         </div>
-                                        <div class="col-12 col-md-6 text-black">{{ $medical_record->patient->birthdate }}</div>
+                                        <div class="col-12 col-md-6 text-black">{{ \Carbon\Carbon::parse($medical_record->patient->birthdate)->translatedFormat('l, d F Y') }}</div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-12 col-md-4 col-lg-4 col-xl-3 text-muted font-semibold">Jenis
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-12 col-md-4 col-lg-4 col-xl-3 text-muted font-semibold">Tanggal Dibuat</div>
-                                        <div class="col-12 col-md-6 text-black">{{ $medical_record->date }}</div>
+                                        <div class="col-12 col-md-6 text-black">{{ \Carbon\Carbon::parse($medical_record->date)->translatedFormat('l, d F Y') }}</div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-12 col-md-4 col-lg-4 col-xl-3 text-muted font-semibold">Anamnesa</div>

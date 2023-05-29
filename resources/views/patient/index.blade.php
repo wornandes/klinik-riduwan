@@ -43,7 +43,7 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $patient->name }}</td>
-                                            <td>{{ $patient->birthdate }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($patient->birthdate)->translatedFormat('l, d F Y') }}</td>
                                             <td>{{ $patient->sex }}</td>
                                             <td>{{ $patient->phone }}</td>
                                             <td style="white-space: nowrap"><a class="btn btn-info"

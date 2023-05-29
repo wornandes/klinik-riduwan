@@ -20,7 +20,7 @@
                                     <div class="row mb-2">
                                         <div class="col-12 col-md-4 col-lg-4 col-xl-3 text-muted font-semibold">Tanggal Lahir
                                         </div>
-                                        <div class="col-12 col-md-6 text-black">{{ $patient->birthdate }}</div>
+                                        <div class="col-12 col-md-6 text-black">{{ \Carbon\Carbon::parse($patient->birthdate)->translatedFormat('l, d F Y') }}</div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-12 col-md-4 col-lg-4 col-xl-3 text-muted font-semibold">Jenis

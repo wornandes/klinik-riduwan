@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PatientSeeder::class,
             MedicalRecordSeeder::class,
-            //RegistrationSeeder::class
+            RegistrationSeeder::class
         ]);
     }
 }

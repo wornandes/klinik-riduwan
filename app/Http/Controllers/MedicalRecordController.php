@@ -22,9 +22,10 @@ class MedicalRecordController extends Controller
  
     		// mengambil data dari table pegawai sesuai pencarian data
 		$patient = Patient::where('name','like',"%".$search."%");
+        $medical_records = MedicalRecord::with('patient')->where('patient_id', '=', $patient->get('id'));
     		// mengirim data pegawai ke view index
             return view('medical_record.index', [
-                'medical_records' => $medical_record
+                'medical_records' => $medical_records
             ]);
  
 	}

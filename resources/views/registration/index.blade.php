@@ -31,8 +31,8 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $registration->patient->name }}</td>
-                                            <td>{{ $registration->check_date }}</td>
-                                            <td>{{ $registration->registration_date }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($registration->check_date)->translatedFormat('l, d F Y') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($registration->registration_date)->translatedFormat('l, d F Y') }}</td>
                                             <td> 
                                                 <form action="/registration/{{$registration->id}}" method="get" class="d-inline">
                                                     @method('delete')
@@ -50,35 +50,10 @@
             </div>
         </div>
     </section>
+    <div class="d-flex justify-content-end">
+
+        {{ $registrations->links('pagination::bootstrap-4')}}
+    </div>
 </div>
 @endsection
-{{-- @push('script')
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#users-table').DataTable({
-                scrollX: true
-            });
-            $('.delete-user').click(function() {
-                let user_id = $(this).data('id');
-                Swal.fire({
-                        title: `Apakah anda yakin menghapus data petugas ini?`,
-                        text: "Jika anda menghapus, data tidak dapat dikembalikan",
-                        icon: "warning",
-                        buttons: true,
-                        showCancelButton: true,
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete.isConfirmed) {
-                            let form = $("#delete-form");
-                            $('input[name="id"]').val(user_id);
-                            form.submit();
-                        }
-                    });
-            })
-        });
-    </script>
-@endpush --}}

@@ -42,7 +42,7 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $medical_record->patient->name }}</td>
-                                            <td>{{ $medical_record->date }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($medical_record->date)->translatedFormat('l, d F Y') }}</td>
                                             <td>{{ $medical_record->anamnesis }}</td>
                                             <td>{{ $medical_record->diagnosis }}</td>
                                             <td>{{ $medical_record->therapy }}</td>
@@ -71,6 +71,9 @@
             </div>
         </div>
     </section>
+    <div class="d-flex justify-content-end">
+
+        {{ $medical_records->links('pagination::bootstrap-4')}}
+    </div>
 </div>
 @endsection
-
