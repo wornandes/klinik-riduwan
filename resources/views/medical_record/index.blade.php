@@ -14,10 +14,18 @@
                                 </a>
                         </div>
                          @if(session()->has('success'))
-    <div class="alert alert-success  col-lg-8" role="alert">
-      {{ session('success') }}
-    </div>  
-    @endif
+                        <div class="alert alert-success  col-lg-8" role="alert">
+                        {{ session('success') }}
+                        </div>  
+                        @endif
+
+                        <form action="/medical_record/search" method="GET">
+                        <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="search" placeholder="Search .." value="{{ old('search') }}">
+                        <button class="btn btn-danger" type="submit">Search</button>
+                        </div>
+                        </form>
+
                         <div class="table-responsive">
                             <table class="table" id="medical_record-table" width="100%">
                                 <thead>
@@ -38,7 +46,7 @@
                                             <td>{{ $medical_record->anamnesis }}</td>
                                             <td>{{ $medical_record->diagnosis }}</td>
                                             <td>{{ $medical_record->therapy }}</td>
-                                            <td style="white-space: nowrap"><a class="btn btn-secondary"
+                                            <td style="white-space: nowrap"><a class="btn btn-info"
                                                     href="{{ '/medical_record/' . $medical_record->id . '/detail' }}">
                                                     Detail
                                                 </a>

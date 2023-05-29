@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <form class="form form-horizontal" action="{{ '/medical_record/' . $medical_record->id . '/update' }}" method="post">
                             @csrf
-                            <input name="id" type="hidden" value="{{ $medical_record->patient->id }}">
+                            <input name="patient_id" type="hidden" value="{{ $medical_record->patient->id }}">
                             <div class="form-body">
                                 <div class="row mb-3">
                                     <label class="col-md-4 col-lg-2 col-form-label">Tanggal</label>
@@ -19,7 +19,7 @@
                                         <input
                                             class="form-control form-control-lg @error('date') is-invalid @enderror"
                                             name="date" type="date" value="{{ $medical_record->date }}">
-                                        @error('birthdate')
+                                        @error('date')
                                             <span class="validation-error"> {{ $message }} </span>
                                         @enderror
                                     </div>
@@ -30,7 +30,7 @@
                                         <input
                                             class="form-control form-control-lg @error('anamnesis') is-invalid @enderror"
                                             name="anamnesis" type="text" value="{{ $medical_record->anamnesis }}">
-                                        @error('address')
+                                        @error('anamnesis')
                                             <span class="invalid-feedback"> {{ $message }} </span>
                                         @enderror
                                     </div>
@@ -42,7 +42,7 @@
                                         <input
                                             class="form-control form-control-lg @error('diagnosis') is-invalid @enderror"
                                             name="diagnosis" type="text" value="{{ $medical_record->diagnosis }}">
-                                        @error('address')
+                                        @error('diagnosis')
                                             <span class="invalid-feedback"> {{ $message }} </span>
                                         @enderror
                                     </div>
@@ -53,7 +53,7 @@
                                         <input
                                             class="form-control form-control-lg @error('therapy') is-invalid @enderror"
                                             name="therapy" type="text" value="{{ $medical_record->therapy }}">
-                                        @error('allergy')
+                                        @error('therapy')
                                             <span class="invalid-feedback"> {{ $message }} </span>
                                         @enderror
                                     </div>

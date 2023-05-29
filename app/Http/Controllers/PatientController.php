@@ -20,11 +20,9 @@ class PatientController extends Controller
 		// menangkap data pencarian
 		$search = $request->search;
  
-    		// mengambil data dari table pegawai sesuai pencarian data
 		$patient = Patient::where('name','like',"%".$search."%")
 		->paginate();
  
-    		// mengirim data pegawai ke view index
             return view('patient.index', [
                 'patients' => $patient
             ]);
@@ -73,12 +71,12 @@ class PatientController extends Controller
 
     public function updatePatient(Request $request){
         $validated = $this->validate($request, [
-            'name' => 'required' . $request->id,
+            'name' => 'required',
             'birthdate' => 'required',
             'sex' => 'required',
             'address' => 'required',
-            'allergy' => 'required',
-            'phone' => 'required'
+            'allergy' => 'required | nullable',
+            'phone' => 'required',
         ]);
 
         $patient = Patient::find($request->id);

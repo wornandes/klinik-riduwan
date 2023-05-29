@@ -15,6 +15,20 @@ class MedicalRecordController extends Controller
         ]);
     }
 
+    public function search(Request $request)
+	{
+		// menangkap data pencarian
+		$search = $request->search;
+ 
+    		// mengambil data dari table pegawai sesuai pencarian data
+		$patient = Patient::where('name','like',"%".$search."%");
+    		// mengirim data pegawai ke view index
+            return view('medical_record.index', [
+                'medical_records' => $medical_record
+            ]);
+ 
+	}
+
     public function addPatientView(){
         $patients = Patient::paginate(10);
         return view('medical_record.add1', [
@@ -62,11 +76,11 @@ class MedicalRecordController extends Controller
 
     public function updateMedicalRecord(Request $request){
         $validated = $this->validate($request, [
-            'date' => 'required' . $request->id,
+            'date' => 'required' ,
             'anamnesis' => 'required',
             'diagnosis' => 'required',
             'therapy' => 'required',
-            'id' => 'required'
+            'patient_id' => 'required'
         ]);
 
         $medical_record = MedicalRecord::find($request->id);
@@ -74,7 +88,7 @@ class MedicalRecordController extends Controller
         $medical_record->anamnesis = $request->anamnesis;
         $medical_record->diagnosis = $request->diagnosis;
         $medical_record->therapy = $request->therapy;
-        $medical_record->patient_id = $request->id;
+        $medical_record->patient_id = $request->patient_id;
         $medical_record->save();
 
         return redirect('/medical_record')->with('success', 'Data Rekam Medis berhasil diubah');

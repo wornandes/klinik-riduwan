@@ -55,9 +55,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/registration/{id}',[RegistrationController::class, 'destroyRegistration']);
         Route::get('/patient/{id}',[PatientController::class, 'destroyPatient']);
         Route::post('/patient/store',[PatientController::class, 'storePatient']);
-        Route::post('/user/{id}/update',[PatientController::class, 'updatePatient']);
         Route::get('/patient/{id}/edit',[PatientController::class, 'editPatient']);
         Route::get('/patient/{id}/detail',[PatientController::class, 'showDetailPatient']);
+        Route::post('/patient/{id}/update',[PatientController::class, 'updatePatient']);
 
     });
 
@@ -69,9 +69,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/medical_record/{id}',[MedicalRecordController::class, 'destroyMedicalRecord']);
         Route::get('/medical_record/{id}/add',[MedicalRecordController::class, 'addMedicalRecord']);
         Route::post('/medical_record/store',[MedicalRecordController::class, 'storeMedicalRecord']);
-        Route::post('/medical_record/{id}/update',[MedicalRecordController::class, 'updateMedicalRecord']);
         Route::get('/medical_record/{id}/edit',[MedicalRecordController::class, 'editMedicalRecord']);
         Route::get('/medical_record/{id}/detail',[MedicalRecordController::class, 'showDetailMedicalRecord']);
+        Route::post('/medical_record/{id}/update',[MedicalRecordController::class, 'updateMedicalRecord']);
     });
 
 });
