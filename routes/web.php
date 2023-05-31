@@ -65,11 +65,13 @@ Route::group(['middleware' => 'auth'], function () {
         
         Route::get('/medical_record',[MedicalRecordController::class, 'index']);
         Route::get('/medical_record/search',[MedicalRecordController::class, 'search']);
+        Route::get('/medical_record/searchMedicalRecord',[MedicalRecordController::class, 'searchMedicalRecord']);
         Route::get('/medical_record/add1',[MedicalRecordController::class, 'addPatientView']);
         Route::get('/medical_record/{id}',[MedicalRecordController::class, 'destroyMedicalRecord']);
         Route::get('/medical_record/{id}/add',[MedicalRecordController::class, 'addMedicalRecord']);
         Route::post('/medical_record/store',[MedicalRecordController::class, 'storeMedicalRecord']);
         Route::get('/medical_record/{id}/edit',[MedicalRecordController::class, 'editMedicalRecord']);
+        Route::get('/medical_record/{id}/pdf',[MedicalRecordController::class, 'exportPDF']);
         Route::get('/medical_record/{id}/detail',[MedicalRecordController::class, 'showDetailMedicalRecord']);
         Route::post('/medical_record/{id}/update',[MedicalRecordController::class, 'updateMedicalRecord']);
     });

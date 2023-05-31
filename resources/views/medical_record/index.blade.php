@@ -19,7 +19,7 @@
                         </div>  
                         @endif
 
-                        <form action="/medical_record/search" method="GET">
+                        <form action="/medical_record/searchMedicalRecord" method="GET">
                         <div class="input-group mb-3">
                         <input type="text" class="form-control" name="search" placeholder="Search .." value="{{ old('search') }}">
                         <button class="btn btn-danger" type="submit">Search</button>
@@ -40,7 +40,8 @@
                                 <tbody>
                                     @foreach ($medical_records as $key => $medical_record)
                                         <tr>
-                                            <td>{{ $key + 1 }}</td>
+                                            
+                                            <td>{{ $key + $medical_records->firstItem() }}</td>
                                             <td>{{ $medical_record->patient->name }}</td>
                                             <td>{{ \Carbon\Carbon::parse($medical_record->date)->translatedFormat('l, d F Y') }}</td>
                                             <td>{{ $medical_record->anamnesis }}</td>
@@ -54,10 +55,14 @@
                                                     href="{{ '/medical_record/' . $medical_record->id . '/edit' }}">
                                                     Edit
                                                 </a>
-                                                    <form action="/medical_record/{{$medical_record->id}}" method="get" class="d-inline">
+                                                <a class="btn btn-success"
+                                                    href="{{ '/medical_record/' . $medical_record->id . '/pdf' }}">
+                                                    Unduh
+                                                </a>
+                                                <form action="/medical_record/{{$medical_record->id}}" method="get" class="d-inline">
                                                     @method('delete')
                                                     @csrf
-                                                    <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus rekam medis ini?')">Delete</button>
+                                                    <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus rekam medis ini?')">Hapus</button>
                                                 </form>
                                             </td>
                                         </tr>

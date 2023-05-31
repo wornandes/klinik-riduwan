@@ -1,5 +1,4 @@
-@extends('layouts.index')
-@section('content')
+
     <div class="page-heading">
         <h3>Detail Rekam Medis</h3>
     </div>
@@ -68,28 +67,6 @@
                                         <div class="col-12 col-md-6 text-black">{{ $medical_record->therapy }}</div>
                                     </div>
 
-                                    <div class="row justify-content-between mb-2">
-                                        <h6 class="col-12 col-md-4 col-lg-4 col-xl-3 text-muted">Action</h6>
-                                        <div class="col-2 col-md-4 col-lg-2">
-                                            <a class="btn btn-block btn-secondary"
-                                                href="{{ url('/medical_record/' . $medical_record->id . '/edit') }}">
-                                                Edit 
-                                            </a>
-                                        </div>
-                                        <div class="col-2 col-md-4 col-lg-2">
-                                            <a class="btn btn-block btn-success"
-                                                href="{{ url('/medical_record/' . $medical_record->id . '/pdf') }}">
-                                                Unduh 
-                                            </a>
-                                        </div>
-                                        <div class="col-2 col-md-4 col-lg-2 ">
-                                            <form id="delete-form" action="/medical_record/{{$medical_record->id}}" method="get">
-                                            @method('delete')    
-                                            @csrf
-                                            <button class="btn btn-block btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus rekam medis ini?')">Delete</button>
-                                            </form>
-                                        </div>
-
                                     </div>
                                 </div>
 
@@ -102,4 +79,3 @@
         </section>
         
     </div>
-@endsection

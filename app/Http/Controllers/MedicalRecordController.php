@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MedicalRecord;
 use App\Models\Patient;
+use PDF;
 
 class MedicalRecordController extends Controller
 {
@@ -15,20 +16,47 @@ class MedicalRecordController extends Controller
         ]);
     }
 
-    public function search(Request $request)
+    public function searchMedicalRecord(Request $request)
 	{
 		// menangkap data pencarian
 		$search = $request->search;
  
     		// mengambil data dari table pegawai sesuai pencarian data
-		$patient = Patient::where('name','like',"%".$search."%");
-        $medical_records = MedicalRecord::with('patient')->where('patient_id', '=', $patient->get('id'));
+		$medical_records = MedicalRecord::with(['patient'=> function  ($query) use ($search){ 
+            $query->where('name','like',"%".$search."%");
+        }])->paginate(10);
+
+        //dd($medical_records);
     		// mengirim data pegawai ke view index
             return view('medical_record.index', [
                 'medical_records' => $medical_records
             ]);
  
 	}
+
+    public function search(Request $request)
+	{
+		// menangkap data pencarian
+		$search = $request->search;
+ 
+		$patient = Patient::where('name','like',"%".$search."%")
+		->paginate();
+ 
+            return view('medical_record.add1', [
+                'patients' => $patient
+            ]);
+ 
+	}
+
+    public function exportPDF($medical_record_id) {
+       
+        $medical_records = MedicalRecord::find($medical_record_id);
+  
+        $pdf = PDF::loadView('medical_record.show_pdf', ['medical_record' => $medical_records])->setOptions(['defaultFont' => 'sans-serif']);
+        
+        return $pdf->download('medical_record.pdf');
+        
+      }
 
     public function addPatientView(){
         $patients = Patient::paginate(10);

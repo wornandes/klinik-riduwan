@@ -29,7 +29,7 @@
                                 <tbody>
                                     @foreach ($registrations as $key => $registration)
                                         <tr>
-                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $key + $registrations->firstItem() }}</td>
                                             <td>{{ $registration->patient->name }}</td>
                                             <td>{{ \Carbon\Carbon::parse($registration->check_date)->translatedFormat('l, d F Y') }}</td>
                                             <td>{{ \Carbon\Carbon::parse($registration->registration_date)->translatedFormat('l, d F Y') }}</td>

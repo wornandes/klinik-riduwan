@@ -41,7 +41,7 @@
                                 <tbody>
                                     @foreach ($patients as $key => $patient)
                                         <tr>
-                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $key + $patients->firstItem() }}</td>
                                             <td>{{ $patient->name }}</td>
                                             <td>{{ \Carbon\Carbon::parse($patient->birthdate)->translatedFormat('l, d F Y') }}</td>
                                             <td>{{ $patient->sex }}</td>
