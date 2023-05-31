@@ -22,9 +22,8 @@ class MedicalRecordController extends Controller
 		$search = $request->search;
  
     		// mengambil data dari table pegawai sesuai pencarian data
-		$medical_records = MedicalRecord::with(['patient'=> function  ($query) use ($search){ 
-            $query->where('name','like',"%".$search."%");
-        }])->paginate(10);
+		$medical_records = MedicalRecord::with('patient')->whereRelation('patient', 'name','like',"%".$search."%")
+        ->paginate(10);
 
         //dd($medical_records);
     		// mengirim data pegawai ke view index
